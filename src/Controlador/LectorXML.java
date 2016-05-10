@@ -5,6 +5,9 @@
  */
 package Controlador;
 
+import Modelo.Estudiante;
+import builder.EstudianteBuilder;
+import builder.InterfaceBuilder;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 import javax.xml.parsers.*;
@@ -88,5 +91,6 @@ public class LectorXML {
             Logger.getLogger(LectorXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 }

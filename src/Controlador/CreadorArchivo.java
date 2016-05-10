@@ -2,6 +2,8 @@
 package Controlador;
 
 import Modelo.Estudiante;
+import builder.EstudianteBuilder;
+import builder.InterfaceBuilder;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -158,6 +160,24 @@ public class CreadorArchivo
                         new FileInputStream(nombreArchivo));
     }
     
+        public ArrayList<Estudiante> get_estudiantes() throws XPathExpressionException{
+         NodeList nodeList = this.busco_en_documento("/ejemploEstudiante.xml/*");
+         InterfaceBuilder ebuilder = new EstudianteBuilder();
+         ArrayList<Estudiante> est = new ArrayList<>();
+         
+         for (int i = 0; i < nodeList.getLength(); i++) {
+             Node nNode = nodeList.item(i);
+
+             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+               
+               est.add(ebuilder.contruyeEstudiante(nNode));
+               
+             }
+         }
+        
+        return est;
+
+    }
     public void cargar(String nombreArchivo){
         this.nombreArchivo = nombreArchivo;
         try {    

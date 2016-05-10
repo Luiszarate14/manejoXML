@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.xpath.XPathExpressionException;
 
 /**
  *
@@ -37,7 +38,7 @@ public class EjemploXML {
 */
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws XPathExpressionException {
         // TODO code application logic here
         // Mostrarles inspector
         Estudiante estudiante = new Estudiante("B93223", "Juanito Perez", "jperez@ucr.ac.cr");
@@ -50,15 +51,18 @@ public class EjemploXML {
         CreadorArchivo creador = new CreadorArchivo("ejemploEstudiante.xml");
         creador.agregarEstudiante(estudiantes);
         creador.guardar();
-        
+        /*
         String expresion = "/ejemploEstudiante.xml/Modelo.Estudiante[carnet='B93223']";
         
         ArrayList<String> campos = new ArrayList<>();
         campos.add("carnet");
         campos.add("nombre");
-        creador.buscar(expresion, campos);
+        creador.buscar(expresion, campos);*/
         
-        
+        ArrayList<Estudiante> ests = creador.get_estudiantes();
+        for(Estudiante est: ests){
+            System.out.println(est);
+        }
  
     }
 
